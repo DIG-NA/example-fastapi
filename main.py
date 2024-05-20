@@ -19,6 +19,8 @@ origins = [
     "http://localhost:8080",
 ]
 
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -26,8 +28,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app = FastAPI()
 
 @app.get("/res/test")
 async def fetmode():
