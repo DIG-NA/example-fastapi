@@ -49,10 +49,11 @@ def trans(response:text):
 
 @app.post("/res/d")
 def trans(response:text):
+    return DeeplTranslate().translate(text= response.toBeTranslated,destination_language='English').result
     # print(DeeplTranslateException())
-    v =  DeeplTranslate().translate(text= response.toBeTranslated,destination_language='English').result
-    print(v)
-    return v
+    # v =  DeeplTranslate().translate(text= response.toBeTranslated,destination_language='English').result
+    # print(v)
+    # return v
 
 @app.post("/res/m")
 def trans(response:text):
