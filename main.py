@@ -2,14 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from translatepy.translators.google import GoogleTranslate
 from translatepy.translators.yandex import YandexTranslate
-from translatepy.translators.deepl import DeeplTranslate
+from PyDeepLX import PyDeepLX
 from translatepy.translators.bing import BingTranslate
 from translatepy.translators.libre import LibreTranslate
 from translatepy.translators.mymemory import MyMemoryTranslate
 from translatepy.translators.reverso import ReversoTranslate
 from translatepy.translators.translatecom import TranslateComTranslate
 from translatepy.translators.microsoft import MicrosoftTranslate
-from translatepy.translators.deepl import DeeplTranslateException
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
@@ -49,10 +48,12 @@ def trans(response:text):
 
 @app.post("/res/d")
 def trans(response:text):
-    v =  DeeplTranslate().translate(text= response.toBeTranslated,destination_language='English').result
-    print(DeeplTranslateException().error_codes)
-    print(DeeplTranslateException().status_code)
+    v = PyDeepLX.translate(text= response.toBeTranslated, targetLang= "EN")
     return v
+    # v =  DeeplTranslate().translate(text= response.toBeTranslated,destination_language='English').result
+    # print(DeeplTranslateException().error_codes)
+    # print(DeeplTranslateException().status_code)
+    # return v
 
 @app.post("/res/m")
 def trans(response:text):
